@@ -47,6 +47,6 @@ Per risolvere il problema dell'interruzione prematura dei processi, è stata imp
 1. Clona il repository:
    ```bash
    git clone [https://github.com/tuo-username/progetto-mortadella.git](https://github.com/tuo-username/progetto-mortadella.git)
-2. scarica il file zippato, decomprimilo e aprilo tramite intellij o il tuo ambiente di sviluppo
+2. Scarica il file zippato, decomprimilo e aprilo tramite intellij o il tuo ambiente di sviluppo
 
 ## Importante: questo progetto usa maven quindi tutte le dependencies sono scritte dentro il file pom.xml insieme a tutto il resto come version control ecc... se ci sono problemi assicurarsi che non sia dannegiato e che sia corretto nel contenuto
