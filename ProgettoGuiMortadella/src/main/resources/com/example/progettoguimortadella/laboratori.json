@@ -1,0 +1,24 @@
+{
+  "laboratori": [
+    {
+      "nomeLaboratorio": "Salumificio Rossi",
+      "indirizzo": "Via Roma 12, Prato",
+      "telefono": "0574-123456"
+    },
+    {
+      "nomeLaboratorio": "Antica Norcineria Toscana",
+      "indirizzo": "Via Firenze 45, Prato",
+      "telefono": "0574-234567"
+    },
+    {
+      "nomeLaboratorio": "La Bottega della Mortadella",
+      "indirizzo": "Piazza Duomo 3, Prato",
+      "telefono": "0574-345678"
+    },
+    {
+      "nomeLaboratorio": "Tradizione Salumi Toscani",
+      "indirizzo": "Via Bologna 21, Prato",
+      "telefono": "0574-567890"
+    }
+  ]
+}

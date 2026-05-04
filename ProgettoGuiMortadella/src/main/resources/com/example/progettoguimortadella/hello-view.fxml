@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.lang.String?>
+<BorderPane prefHeight="600" prefWidth="800" styleClass="root-pane" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.progettoguimortadella.LaboratorioController">
+
+
+    <stylesheets>
+        <String fx:value="/com/example/progettoguimortadella/style.css"/>
+    </stylesheets>
+
+    <!-- TOP: Title bar -->
+    <top>
+        <VBox styleClass="header">
+            <padding><Insets bottom="20" left="30" right="30" top="20" /></padding>
+            <Label styleClass="title" text="Confraternita della Mortadella di Prato" />
+            <Label styleClass="subtitle" text="Gestione Laboratori" />
+        </VBox>
+    </top>
+
+    <!-- CENTER: Main content -->
+    <center>
+        <HBox spacing="20">
+            <padding><Insets bottom="20" left="30" right="30" top="20" /></padding>
+
+            <!-- LEFT: Lab selection -->
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label styleClass="section-title" text="Laboratori Disponibili" />
+                <Label styleClass="section-subtitle" text="Seleziona i laboratori per avviare la produzione" />
+
+                <ListView fx:id="laboratorioListView" styleClass="lab-list" VBox.vgrow="ALWAYS" />
+
+                <HBox spacing="10">
+                    <Button fx:id="selectAllButton" onAction="#handleSelectAll" styleClass="btn-secondary" text="Seleziona Tutti" />
+                    <Button fx:id="deselectAllButton" onAction="#handleDeselectAll" styleClass="btn-secondary" text="Deseleziona Tutti" />
+                </HBox>
+
+                <Button fx:id="avviaButton" maxWidth="Infinity" onAction="#handleAvvia"  styleClass="btn-primary" text="▶  Avvia Produzione" />
+            </VBox>
+
+            <!-- RIGHT: Log area -->
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label styleClass="section-title" text="Log Operazioni" />
+
+                <TextArea fx:id="logArea" editable="false" styleClass="log-area" wrapText="true" VBox.vgrow="ALWAYS" />
+
+                <Button fx:id="clearLogButton" onAction="#handleClearLog" styleClass="btn-secondary" text="Pulisci Log" />
+            </VBox>
+
+        </HBox>
+    </center>
+
+    <!-- BOTTOM: Status bar -->
+    <bottom>
+        <HBox spacing="20" styleClass="status-bar">
+            <padding><Insets bottom="10" left="30" right="30" top="10" /></padding>
+            <Label styleClass="status-label" text="Prodotte: " />
+            <Label fx:id="prodotteLabel" styleClass="status-value" text="0" />
+            <Label styleClass="status-label" text="Approvate: " />
+            <Label fx:id="approvateLabel" styleClass="status-value" text="0" />
+            <Label styleClass="status-label" text="Scartate: " />
+            <Label fx:id="scartateLabel" styleClass="status-value" text="0" />
+            <Label styleClass="status-label" text="Distribuite: " />
+            <Label fx:id="distribuiteLabel" styleClass="status-value" text="0" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

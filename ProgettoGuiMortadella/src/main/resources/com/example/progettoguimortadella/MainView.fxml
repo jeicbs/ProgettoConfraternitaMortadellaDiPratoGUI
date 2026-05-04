@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="650" prefWidth="900" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.progettoguimortadella.LaboratorioController">
+
+    <stylesheets>
+        <String fx:value="/com/example/progettoguimortadella/style.css" />
+    </stylesheets>
+
+    <!-- HEADER -->
+    <top>
+        <VBox styleClass="header">
+            <padding><Insets bottom="16" left="30" right="30" top="16" /></padding>
+            <Label styleClass="title" text="Confraternita della Mortadella di Prato" />
+            <Label styleClass="subtitle" text="Sistema di Gestione Produzione" />
+        </VBox>
+    </top>
+
+    <!-- TABS -->
+    <center>
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
+
+            <!-- TAB 1: LABORATORI -->
+            <Tab text="Laboratori">
+                <HBox spacing="20">
+                    <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
+
+                    <!-- Selection -->
+                    <VBox prefWidth="300" spacing="10">
+                        <Label styleClass="section-title" text="Laboratori Disponibili" />
+                        <Label styleClass="section-subtitle" text="Seleziona i laboratori da avviare" />
+                        <ListView fx:id="laboratorioListView" prefHeight="300" styleClass="lab-list" VBox.vgrow="ALWAYS" />
+                        <HBox spacing="10">
+                            <Button onAction="#handleSelectAll" styleClass="btn-secondary" text="Seleziona Tutti" />
+                            <Button onAction="#handleDeselectAll" styleClass="btn-secondary" text="Deseleziona Tutti" />
+                        </HBox>
+                        <Button fx:id="avviaButton" maxWidth="Infinity" onAction="#handleAvvia" styleClass="btn-primary" text="▶  Avvia Produzione" />
+                    </VBox>
+
+                    <!-- Log -->
+                    <VBox spacing="10" HBox.hgrow="ALWAYS">
+                        <Label styleClass="section-title" text="Log Operazioni" />
+                        <TextArea fx:id="logArea" editable="false" prefHeight="380" styleClass="log-area" wrapText="true" VBox.vgrow="ALWAYS" />
+                        <Button onAction="#handleClearLog" styleClass="btn-secondary" text="Pulisci Log" />
+                    </VBox>
+
+                </HBox>
+            </Tab>
+
+            <!-- TAB 2: MAGAZZINI -->
+            <Tab text="Magazzini">
+                <VBox spacing="30">
+                    <padding><Insets bottom="30" left="30" right="30" top="30" /></padding>
+                    <Label styleClass="section-title" text="Stato Magazzini" />
+
+                    <!-- Magazzino 1 -->
+                    <VBox spacing="10" styleClass="warehouse-box">
+                        <padding><Insets bottom="15" left="15" right="15" top="15" /></padding>
+                        <HBox>
+                            <Label styleClass="warehouse-title" text="Magazzino 1 — In attesa di controllo qualità" HBox.hgrow="ALWAYS" />
+                            <Label fx:id="mag1CountLabel" styleClass="warehouse-count" text="0 / 10" />
+                        </HBox>
+                        <ProgressBar fx:id="mag1ProgressBar" maxWidth="Infinity" progress="0.0" styleClass="warehouse-progress" />
+                        <ScrollPane fitToWidth="true">
+                            <FlowPane fx:id="mag1FlowPane" hgap="5" vgap="5">
+                                <padding><Insets bottom="5" left="5" right="5" top="5" /></padding>
+                            </FlowPane>
+                        </ScrollPane>
+                    </VBox>
+
+                    <!-- Magazzino 2 -->
+                    <VBox spacing="10" styleClass="warehouse-box">
+                        <padding><Insets bottom="15" left="15" right="15" top="15" /></padding>
+                        <HBox>
+                            <Label styleClass="warehouse-title" text="Magazzino 2 — In attesa di distribuzione" HBox.hgrow="ALWAYS" />
+                            <Label fx:id="mag2CountLabel" styleClass="warehouse-count" text="0 / 15" />
+                        </HBox>
+                        <ProgressBar fx:id="mag2ProgressBar" maxWidth="Infinity" progress="0.0" styleClass="warehouse-progress" />
+                        <ScrollPane fitToWidth="true">
+                            <FlowPane fx:id="mag2FlowPane" hgap="5" vgap="5">
+                                <padding><Insets bottom="5" left="5" right="5" top="5" /></padding>
+                            </FlowPane>
+                        </ScrollPane>
+                    </VBox>
+               <TextArea fx:id="logMagazzini" prefHeight="200.0" prefWidth="200.0" styleClass="log-area" />
+
+                </VBox>
+            </Tab>
+
+            <!-- TAB 3: PUNTI VENDITA -->
+            <Tab text="Punti Vendita">
+                <VBox spacing="20">
+                    <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
+                    <Label styleClass="section-title" text="Distribuzione ai Punti Vendita" />
+                    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                        <VBox fx:id="puntiVenditaContainer" spacing="15">
+                            <padding><Insets bottom="5" left="5" right="5" top="5" /></padding>
+                            <!-- Cards generated dynamically in controller -->
+                        </VBox>
+                    </ScrollPane>
+                </VBox>
+            </Tab>
+
+        </TabPane>
+    </center>
+
+    <!-- STATUS BAR -->
+    <bottom>
+        <VBox styleClass="status-bar">
+            <padding><Insets bottom="10" left="20" right="20" top="10" /></padding>
+            <ProgressBar fx:id="globalProgressBar" maxWidth="Infinity" progress="0.0" />
+            <HBox spacing="20">
+                <padding><Insets bottom="0" top="6" /></padding>
+                <Label styleClass="status-label" text="Prodotte: " />
+                <Label fx:id="prodotteLabel" styleClass="status-value" text="0 / 50" />
+                <Label styleClass="status-label" text="Approvate: " />
+                <Label fx:id="approvateLabel" styleClass="status-value" text="0" />
+                <Label styleClass="status-label" text="Scartate: " />
+                <Label fx:id="scartateLabel" styleClass="status-value" text="0" />
+                <Label styleClass="status-label" text="Distribuite: " />
+                <Label fx:id="distribuiteLabel" styleClass="status-value" text="0" />
+            </HBox>
+        </VBox>
+    </bottom>
+
+</BorderPane>
