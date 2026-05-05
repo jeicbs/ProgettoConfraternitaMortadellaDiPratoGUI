@@ -22,7 +22,7 @@ public class Gestione {
 
     public Gestione(GestioneMagazzini g, UICallback logger) throws IOException {
         this.gestioneMagazzini=g;
-        reader = new FileReader("src/main/resources/com/example/progettoguimortadella/laboratori.json");
+        reader = new FileReader("ProgettoGuiMortadella/src/main/resources/com/example/progettoguimortadella/laboratori.json");
         JsonObject obj = gson.fromJson(reader, JsonObject.class);
         JsonArray arr = obj.get("laboratori").getAsJsonArray();
 
@@ -38,7 +38,7 @@ public class Gestione {
         }
         this.logger=logger;
 
-        reader = new FileReader("src/main/resources/com/example/progettoguimortadella/puntiVendita.csv");
+        reader = new FileReader("ProgettoGuiMortadella/src/main/resources/com/example/progettoguimortadella/puntiVendita.csv");
         BufferedReader br = new BufferedReader(reader);
 
         for (int i = 0; i < 3; i++) {
